@@ -2,6 +2,8 @@
 
 > Test app for KT
 
+Julia Fractal /@juliajs
+
 ## Build Setup
 
 ``` bash
