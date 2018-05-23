@@ -15,7 +15,7 @@
             <router-link to="/julia">Julia</router-link>
           </li>
           <li class="nav-item nav-link">
-            <a href="./kt/juliajs">Juliajs</a>
+            <a href="/kt/juliajs">Juliajs</a>
           </li>
         </ul>
       </div>
