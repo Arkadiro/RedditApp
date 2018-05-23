@@ -2,7 +2,7 @@
 
 > Test app for KT
 
-Julia Fractal /@juliajs
+Julia Fractal '/@juliajs'
 
 ## Build Setup
 
