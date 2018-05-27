@@ -3,6 +3,7 @@
         <div class="container">
             <div class="float-left mr-5">
                 <form>
+                    <button v-on:click.prevent="frame++">Click me to start</button><br><br>
                     <input type="text" v-model="rgb1"><br>
                     <label>Color (r)</label><br>
                     <input type="text" v-model="rgb2"><br>
@@ -20,6 +21,7 @@ export default {
     name: 'first',
     data(){
         return {
+            counter: 0,
             WJulia:768,
             HJulia:768,
             cx: 0, 
@@ -32,14 +34,21 @@ export default {
             pixJulia:{},
             frame:0,
             rgb1:255,
-            rgb2:255,
-            
+            rgb2:255,    
         }    
         
     },
+    watch:{
+        frame: function(value){
+            let vm = this;
+            vm.newUpdate()
+            setTimeout(function(){
+                vm.LoopJulia();
+            }, 70)
+        }
+    },
     methods: {
-        updateCanvas: function (){
-            clearInterval( this.idJulia );
+        newUpdate: function (){
             let canvas = document.getElementById('first');
 
             if (canvas && canvas.getContext){
@@ -51,11 +60,9 @@ export default {
                         this.imgJulia = this.ctx.createImageData(this.WJulia, this.HJulia);
                     else
                         this.imgJulia = this.ctx.getImageData(0, 0, this.WJulia, this.HJulia);
-
                     this.pixJulia = this.imgJulia.data; 
                 }               
             }
-                this.idJulia = setInterval(this.LoopJulia, 20);
         },
         LoopJulia(){
             this.kat1 += 0.003;
@@ -108,10 +115,30 @@ export default {
                     pix[offs++] = g;
                     pix[offs++] = b;
                     pix[offs] = a;
-        }
+        },
+        // updateCanvas: function (){
+        //     clearInterval( this.idJulia );
+        //     let canvas = document.getElementById('first');
+
+        //     if (canvas && canvas.getContext){
+        //     this.ctx = canvas.getContext('2d');
+        //         if(this.ctx){
+        //             this.ctx.font = "bold 12px sans-serif";
+        //             this.ctx.fillStyle = 0;
+        //             if(!this.ctx.createImageData)
+        //                 this.imgJulia = this.ctx.createImageData(this.WJulia, this.HJulia);
+        //             else
+        //                 this.imgJulia = this.ctx.getImageData(0, 0, this.WJulia, this.HJulia);
+
+        //             this.pixJulia = this.imgJulia.data; 
+        //         }               
+        //     }
+        //         this.idJulia = setInterval(this.LoopJulia, 20);
+        // },
+
     },
-    mounted: function (){
-        this.updateCanvas();
-    }
+    // mounted: function (){
+    //     this.updateCanvas();
+    // }
 }
 </script>
